@@ -1,9 +1,9 @@
 import {title} from "change-case";
-import {is, toString} from "ramda";
+import R from "ramda";
 
 function stringify (thing) {
     // ramda's toString surrounds strings with quotes, avoid that
-    return is(String, thing) ? thing : toString(thing);
+    return R.is(String, thing) ? thing : R.toString(thing);
 }
 function fromString (column) {
     return {
@@ -21,6 +21,6 @@ function fromObject (column) {
 }
 export function normalizeColumns (columns) {
     return columns.map(column => (
-        is(String, column) ? fromString(column) : fromObject(column)
+        R.is(String, column) ? fromString(column) : fromObject(column)
     ));
 }

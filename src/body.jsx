@@ -9,7 +9,7 @@ export default class Body extends Component {
         collection: PropTypes.arrayOf(item).isRequired,
         columns: PropTypes.arrayOf(column).isRequired,
         onRowClick: PropTypes.func
-    }
+    };
 
     render () {
         const {columns, collection, onRowClick} = this.props;

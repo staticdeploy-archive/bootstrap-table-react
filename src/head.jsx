@@ -6,7 +6,7 @@ export default class Head extends Component {
 
     static propTypes = {
         columns: PropTypes.arrayOf(column)
-    }
+    };
 
     renderCell ({key, formattedKey}) {
         return (

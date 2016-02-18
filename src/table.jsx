@@ -22,7 +22,7 @@ export default class Table extends Component {
             responsive: PropTypes.bool,
             striped: PropTypes.bool
         })
-    }
+    };
 
     getTableClassName () {
         const {tableOptions = {}} = this.props;
@@ -40,7 +40,11 @@ export default class Table extends Component {
         return (
             <table className={this.getTableClassName()}>
                 <Head columns={columns} />
-                <Body {...this.props} columns={columns} />
+                <Body
+                    collection={this.props.collection}
+                    columns={columns}
+                    onRowClick={this.props.onRowClick}
+                />
             </table>
         );
     }

@@ -7,7 +7,7 @@ export default class Row extends Component {
     static propTypes = {
         columns: PropTypes.arrayOf(column).isRequired,
         item: PropTypes.object.isRequired,
-        onClick: PropTypes.func.isRequired
+        onClick: PropTypes.func
     };
 
     renderCell (column) {

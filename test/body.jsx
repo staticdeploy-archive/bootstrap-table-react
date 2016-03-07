@@ -5,7 +5,7 @@ import {range} from "ramda";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
-import Body from "body";
+import Body from "../src/body";
 
 chai.use(sinonChai);
 

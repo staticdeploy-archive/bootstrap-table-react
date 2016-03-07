@@ -1,26 +1,11 @@
 import React from "react";
 import {identity} from "ramda";
-import chai, {expect} from "chai";
+import {expect} from "chai";
 import $ from "teaspoon";
-import sinon from "sinon";
-import sinonChai from "sinon-chai";
 
-import Table from "table";
-
-chai.use(sinonChai);
+import Table from "../src/table";
 
 describe("`Table` component", () => {
-
-    const normalizeColumns = sinon.stub().returns([]);
-
-    beforeEach(() => {
-        Table.__Rewire__("normalizeColumns", normalizeColumns);
-    });
-
-    afterEach(() => {
-        Table.__ResetDependency__("normalizeColumns");
-        normalizeColumns.reset();
-    });
 
     it("renders a table", () => {
         const $Table = $(<Table collection={[]} columns={[]} />).render();
@@ -61,13 +46,6 @@ describe("`Table` component", () => {
         expect($Table.find(".table-hover").length).to.equal(1);
         expect($Table.find(".table-responsive").length).to.equal(1);
         expect($Table.find(".table-striped").length).to.equal(0);
-    });
-
-    it("call the `normalizeColumns` function with props `columns`", () => {
-        const columns = ["item1", "item2"];
-        $(<Table collection={[]} columns={columns} />).render();
-        expect(normalizeColumns).to.have.callCount(1);
-        expect(normalizeColumns).to.have.been.calledWith(columns);
     });
 
     it("call the component `Head`", () => {

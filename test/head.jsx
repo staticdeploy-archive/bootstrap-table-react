@@ -2,7 +2,7 @@ import React from "react";
 import {expect} from "chai";
 import $ from "teaspoon";
 
-import Head from "head";
+import Head from "../src/head";
 
 describe("`Head` component", () => {
 

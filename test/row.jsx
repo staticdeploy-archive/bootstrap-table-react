@@ -4,7 +4,7 @@ import $ from "teaspoon";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
-import Row from "row";
+import Row from "../src/row";
 
 chai.use(sinonChai);
 

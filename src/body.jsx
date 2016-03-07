@@ -20,7 +20,9 @@ export default class Body extends Component {
                         columns={columns}
                         item={item}
                         key={item.id}
-                        onClick={() => onRowClick(collection[index])}
+                        onClick={onRowClick && (
+                            () => onRowClick(collection[index])
+                        )}
                     />
                 ))}
             </tbody>

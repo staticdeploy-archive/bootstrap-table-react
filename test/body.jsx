@@ -37,21 +37,38 @@ describe("`Body` component", () => {
         expect($Body.find("Row").length).to.equal(collection.length);
     });
 
-    it("call the `onRowClick` function of the clicked row", () => {
-        const onRowClick = sinon.spy();
-        const $Body = $(
-            <Body
-                collection={collection}
-                columns={columns}
-                onRowClick={onRowClick}
-            />
-        ).shallowRender();
-        $Body.find("Row").first().trigger("click");
-        expect(onRowClick).to.have.callCount(1);
-        expect(onRowClick).to.have.been.calledWith({id: "0"});
-        $Body.find("Row").last().trigger("click");
-        expect(onRowClick).to.have.callCount(2);
-        expect(onRowClick).to.have.been.calledWith({id: "19"});
+    describe("on row click", () => {
+
+        it("if a `onRowClick` function was passed as prop, calls it with the element in the collection corresponding with the clicked row", () => {
+            const onRowClick = sinon.spy();
+            const $Body = $(
+                <Body
+                    collection={collection}
+                    columns={columns}
+                    onRowClick={onRowClick}
+                />
+            ).shallowRender();
+            $Body.find("Row").first().trigger("click");
+            expect(onRowClick).to.have.callCount(1);
+            expect(onRowClick).to.have.been.calledWith({id: "0"});
+            $Body.find("Row").last().trigger("click");
+            expect(onRowClick).to.have.callCount(2);
+            expect(onRowClick).to.have.been.calledWith({id: "19"});
+        });
+
+        it("if no `onRowClick` function was passed as prop, doesn't throw errors", () => {
+            const peacemaker = () => {
+                const $Body = $(
+                    <Body
+                        collection={collection}
+                        columns={columns}
+                    />
+                ).shallowRender();
+                $Body.find("Row").first().trigger("click");
+            };
+            expect(peacemaker).not.to.throw();
+        });
+
     });
 
 });

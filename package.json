@@ -2,7 +2,7 @@
   "name": "bootstrap-table-react",
   "version": "1.1.1",
   "description": "Simple bootstrap table in react",
-  "main": "lib/table.js",
+  "main": "lib/Table.jsx",
   "scripts": {
     "build": "babel src --out-dir lib",
     "dev": "npm test -- --watch",
@@ -26,6 +26,7 @@
     "babel-preset-react": "6.11.1",
     "babel-preset-stage-0": "6.5.0",
     "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
     "eslint": "3.5.0",
     "eslint-config-staticdeploy": "^2.0.1",
     "jsdom": "^9.5.0",
@@ -34,8 +35,7 @@
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "sinon": "^1.17.5",
-    "sinon-chai": "^2.8.0",
-    "teaspoon": "^6.4.1"
+    "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "change-case": "^3.0.0",

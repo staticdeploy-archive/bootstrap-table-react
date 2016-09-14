@@ -1,83 +1,86 @@
-import React from "react";
-import {identity} from "ramda";
 import {expect} from "chai";
-import $ from "teaspoon";
+import {shallow} from "enzyme";
+import React from "react";
 
-import Table from "../src/table";
+import Body from "../src/Body";
+import Head from "../src/Head";
+import Table from "../src/Table";
 
-describe("`Table` component", () => {
+describe("Table", () => {
 
     it("renders a table", () => {
-        const $Table = $(<Table collection={[]} columns={[]} />).render();
-        expect($Table.find("table").length).to.equal(1);
-        $Table.unmount();
+        const table = shallow(
+            <Table collection={[]} columns={[]} />
+        );
+        expect(
+            table.find("table")
+        ).to.have.length(1);
     });
 
-    it("pass to the rendered table the class `table`", () => {
-        const $Table = $(<Table collection={[]} columns={[]} />).render();
-        expect($Table.find(".table").length).to.equal(1);
-        $Table.unmount();
-    });
+    describe("renders a table that", () => {
 
-    it("pass to the rendered table the class in props `className` and the class `table`", () => {
-        const $Table = $(<Table className="newClassName" collection={[]} columns={[]} />).render();
-        expect($Table.find(".newClassName").length).to.equal(1);
-        expect($Table.find(".table").length).to.equal(1);
-        $Table.unmount();
-    });
-
-    it("pass to the rendered table the class set to true in `tableOptions`", () => {
-        const $Table = $(
-            <Table
-                collection={[]}
-                columns={[]}
-                tableOptions={{
-                    bordered: true,
-                    condensed: false,
-                    hover: true,
-                    responsive: true,
-                    striped: false
-                }}
-            />
-        ).render();
-        expect($Table.find(".table").length).to.equal(1);
-        expect($Table.find(".table-bordered").length).to.equal(1);
-        expect($Table.find(".table-condensed").length).to.equal(0);
-        expect($Table.find(".table-hover").length).to.equal(1);
-        expect($Table.find(".table-responsive").length).to.equal(1);
-        expect($Table.find(".table-striped").length).to.equal(0);
-    });
-
-    it("call the component `Head`", () => {
-        const $Table = $(<Table collection={[]} columns={[]} />).render();
-        expect($Table.find("Head").length).to.equal(1);
-        $Table.unmount();
-    });
-
-    it("call the component `Body`", () => {
-        const $Table = $(<Table collection={[]} columns={[]} />).render();
-        expect($Table.find("Body").length).to.equal(1);
-        $Table.unmount();
-    });
-
-    it("pass correct props to component `Head`", () => {
-        const $Table = $(
-            <Table collection={[]} columns={[]} onRowClick={identity} />
-        ).render();
-        expect($Table.find("Head").props()).to.deep.equal({columns: []});
-        $Table.unmount();
-    });
-
-    it("pass correct props to component `Body`", () => {
-        const $Table = $(
-            <Table collection={[]} columns={[]} onRowClick={identity} />
-        ).render();
-        expect($Table.find("Body").props()).to.deep.equal({
-            collection: [],
-            columns: [],
-            onRowClick: identity
+        it("has css class table", () => {
+            const table = shallow(
+                <Table collection={[]} columns={[]} />
+            );
+            expect(
+                table.find("table").hasClass("table")
+            ).to.equal(true);
         });
-        $Table.unmount();
+
+        it("inherits css classes passed to the Table component", () => {
+            const table = shallow(
+                <Table className="class1 class2" collection={[]} columns={[]} />
+            );
+            expect(
+                table.find("table").hasClass("class1")
+            ).to.equal(true);
+            expect(
+                table.find("table").hasClass("class2")
+            ).to.equal(true);
+        });
+
+        it("has css classes corresponding to the enabled tableOptions", () => {
+            const optionNames = [
+                "bordered",
+                "condensed",
+                "hover",
+                "responsive",
+                "striped"
+            ];
+            optionNames.forEach(optionName => {
+                const tableOptions = {[optionName]: true};
+                const table = shallow(
+                    <Table
+                        collection={[]}
+                        columns={[]}
+                        tableOptions={tableOptions}
+                    />
+                );
+                expect(
+                    table.find("table").hasClass(`table-${optionName}`)
+                ).to.equal(true);
+            });
+        });
+
+    });
+
+    it("renders a Head", () => {
+        const table = shallow(
+            <Table collection={[]} columns={[]} />
+        );
+        expect(
+            table.find(Head)
+        ).to.have.length(1);
+    });
+
+    it("renders a Body", () => {
+        const table = shallow(
+            <Table collection={[]} columns={[]} />
+        );
+        expect(
+            table.find(Body)
+        ).to.have.length(1);
     });
 
 });

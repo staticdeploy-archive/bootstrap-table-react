@@ -1,40 +1,52 @@
 import React from "react";
 import {expect} from "chai";
-import $ from "teaspoon";
+import {shallow} from "enzyme";
 
-import Head from "../src/head";
+import Head from "../src/Head";
 
-describe("`Head` component", () => {
+describe("Head", () => {
 
     const columns = [{
         key: "column1",
-        formattedKey: "Column 1"
+        formattedKey: "Column1"
     }, {
         key: "column2",
-        formattedKey: "Column 2"
+        formattedKey: "Column2"
     }, {
         key: "column3",
-        formattedKey: "Column 3"
+        formattedKey: "Column3"
     }, {
         key: "column4",
-        formattedKey: "Column 4"
+        formattedKey: "Column4"
     }];
 
-    const $Head = $(<Head columns={columns} />).shallowRender();
+    const head = shallow(
+        <Head columns={columns} />
+    );
 
-    it("renders a `thead` and a `tr`", () => {
-        expect($Head.find("thead").length).to.equal(1);
-        expect($Head.find("tr").length).to.equal(1);
+    it("renders a thead and a tr", () => {
+        expect(
+            head.find("thead")
+        ).to.have.length(1);
+        expect(
+            head.find("tr")
+        ).to.have.length(1);
     });
 
     it("renders the correct number of columns", () => {
-        expect($Head.find("th").length).to.equal(columns.length);
+        expect(
+            head.find("th")
+        ).to.have.length(columns.length);
     });
 
-    it("renders the columns with the correct `key` and `children`", () => {
-        $Head.find("th").forEach((node, index) => {
-            expect(node.key).to.equal(columns[index].key);
-            expect(node.props).to.deep.equal({children: columns[index].formattedKey});
+    it("renders the columns with the correct key and children", () => {
+        head.find("th").forEach((node, index) => {
+            expect(
+                node.key()
+            ).to.equal(columns[index].key);
+            expect(
+                node.prop("children")
+            ).to.equal(columns[index].formattedKey);
         });
     });
 

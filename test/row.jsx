@@ -1,11 +1,11 @@
 import React from "react";
 import {expect} from "chai";
-import $ from "teaspoon";
+import {shallow} from "enzyme";
 import sinon from "sinon";
 
-import Row from "../src/row";
+import Row from "../src/Row";
 
-describe("`Row` component", () => {
+describe("Row", () => {
 
     const valueFormatter1 = sinon.stub().returns("1");
     const valueFormatter2 = sinon.stub().returns("2");
@@ -14,19 +14,19 @@ describe("`Row` component", () => {
 
     const columns = [{
         key: "column1",
-        formattedKey: "Column 1",
+        formattedKey: "Column1",
         valueFormatter: valueFormatter1
     }, {
         key: "column2",
-        formattedKey: "Column 2",
+        formattedKey: "Column2",
         valueFormatter: valueFormatter2
     }, {
         key: "column3",
-        formattedKey: "Column 3",
+        formattedKey: "Column3",
         valueFormatter: valueFormatter3
     }, {
         key: "column4",
-        formattedKey: "Column 4",
+        formattedKey: "Column4",
         valueFormatter: valueFormatter4
     }];
 
@@ -36,13 +36,13 @@ describe("`Row` component", () => {
 
     const onClickSpy = sinon.spy();
 
-    const $Row = $(
+    const row = shallow(
         <Row
             columns={columns}
             item={item}
             onClick={onClickSpy}
         />
-    ).shallowRender();
+    );
 
     beforeEach(() => {
         valueFormatter1.reset();
@@ -52,36 +52,46 @@ describe("`Row` component", () => {
         onClickSpy.reset();
     });
 
-    it("renders a `tr`", () => {
-        expect($Row.find("tr").length).to.equal(1);
+    it("renders a tr", () => {
+        expect(
+            row.find("tr")
+        ).to.have.length(1);
     });
 
-    it("renders a `tr` with cursor style [CASE: onClick is defined]", () => {
-        expect($Row.find("tr").props().style).to.deep.equal({cursor: "pointer"});
+    it("renders a tr with cursor style [CASE: onClick is defined]", () => {
+        expect(
+            row.find("tr").prop("style")
+        ).to.deep.equal({cursor: "pointer"});
     });
 
-    it("renders a `tr` with cursor style [CASE: onClick is not defined]", () => {
-        const $RowWithoutOnClickProps = $(
+    it("renders a tr with cursor style [CASE: onClick is not defined]", () => {
+        const rowWithoutOnClickProps = shallow(
             <Row
                 columns={columns}
                 item={item}
             />
-        ).shallowRender();
-        expect($RowWithoutOnClickProps.find("tr").props().style).to.deep.equal({cursor: ""});
+        );
+        expect(
+            rowWithoutOnClickProps.find("tr").prop("style")
+        ).to.deep.equal({cursor: ""});
     });
 
-    it("call `onClick` function on `tr` when this is clicked", () => {
-        $Row.find("tr").trigger("click");
+    it("calls onClick function on tr when this is clicked", () => {
+        row.find("tr").simulate("click");
         expect(onClickSpy).to.have.callCount(1);
     });
 
-    it("renders a number of `td` equal to the numbers of columns", () => {
-        expect($Row.find("td").length).to.equal(columns.length);
+    it("renders a number of td-s equal to the numbers of columns", () => {
+        expect(
+            row.find("td")
+        ).to.have.length(columns.length);
     });
 
-    it("pass `valueFormatter` as children of `td`", () => {
-        $Row.find("td").forEach((node, index) => {
-            expect(node.props.children).to.equal((index + 1).toString());
+    it("passes valueFormatter return values as children of td-s", () => {
+        row.find("td").forEach((node, index) => {
+            expect(
+                node.prop("children")
+            ).to.equal((index + 1).toString());
         });
     });
 

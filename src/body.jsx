@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from "react";
 
 import * as modulePropTypes from "./modulePropTypes";
-import Row from "./row";
+import Row from "./Row";
 
 export default class Body extends Component {
 

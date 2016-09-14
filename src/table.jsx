@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import React, {PropTypes, Component} from "react";
 
-import Body from "./body";
-import Head from "./head";
+import Body from "./Body";
+import Head from "./Head";
 import * as modulePropTypes from "./modulePropTypes";
 import {normalizeColumns} from "./utils";
 

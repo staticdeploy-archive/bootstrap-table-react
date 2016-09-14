@@ -1,11 +1,11 @@
 import React, {PropTypes, Component} from "react";
 
-import {column} from "./types";
+import * as modulePropTypes from "./modulePropTypes";
 
 export default class Row extends Component {
 
     static propTypes = {
-        columns: PropTypes.arrayOf(column).isRequired,
+        columns: PropTypes.arrayOf(modulePropTypes.column).isRequired,
         item: PropTypes.object.isRequired,
         onClick: PropTypes.func
     };

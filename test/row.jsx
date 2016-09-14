@@ -1,12 +1,9 @@
 import React from "react";
-import chai, {expect} from "chai";
+import {expect} from "chai";
 import $ from "teaspoon";
 import sinon from "sinon";
-import sinonChai from "sinon-chai";
 
 import Row from "../src/row";
-
-chai.use(sinonChai);
 
 describe("`Row` component", () => {
 
@@ -83,7 +80,7 @@ describe("`Row` component", () => {
     });
 
     it("pass `valueFormatter` as children of `td`", () => {
-        $Row.find("td").map((node, index) => {
+        $Row.find("td").forEach((node, index) => {
             expect(node.props.children).to.equal((index + 1).toString());
         });
     });

@@ -1,13 +1,13 @@
 import React, {PropTypes, Component} from "react";
 
+import * as modulePropTypes from "./modulePropTypes";
 import Row from "./row";
-import {column, item} from "./types";
 
 export default class Body extends Component {
 
     static propTypes = {
-        collection: PropTypes.arrayOf(item).isRequired,
-        columns: PropTypes.arrayOf(column).isRequired,
+        collection: PropTypes.arrayOf(modulePropTypes.item).isRequired,
+        columns: PropTypes.arrayOf(modulePropTypes.column).isRequired,
         onRowClick: PropTypes.func
     };
 

@@ -1,13 +1,10 @@
 import React from "react";
-import chai, {expect} from "chai";
+import {expect} from "chai";
 import $ from "teaspoon";
 import {range} from "ramda";
 import sinon from "sinon";
-import sinonChai from "sinon-chai";
 
 import Body from "../src/body";
-
-chai.use(sinonChai);
 
 describe("`Body` component", () => {
 

@@ -32,7 +32,7 @@ describe("`Head` component", () => {
     });
 
     it("renders the columns with the correct `key` and `children`", () => {
-        $Head.find("th").map((node, index) => {
+        $Head.find("th").forEach((node, index) => {
             expect(node.key).to.equal(columns[index].key);
             expect(node.props).to.deep.equal({children: columns[index].formattedKey});
         });

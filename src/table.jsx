@@ -3,16 +3,16 @@ import React, {PropTypes, Component} from "react";
 
 import Body from "./body";
 import Head from "./head";
-import {column, item} from "./types";
+import * as modulePropTypes from "./modulePropTypes";
 import {normalizeColumns} from "./utils";
 
 export default class Table extends Component {
 
     static propTypes = {
         className: PropTypes.string,
-        collection: PropTypes.arrayOf(item).isRequired,
+        collection: PropTypes.arrayOf(modulePropTypes.item).isRequired,
         columns: PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.string, column])
+            PropTypes.oneOfType([PropTypes.string, modulePropTypes.column])
         ).isRequired,
         onRowClick: PropTypes.func,
         tableOptions: PropTypes.shape({

@@ -1,11 +1,11 @@
 import React, {PropTypes, Component} from "react";
 
-import {column} from "./types";
+import * as modulePropTypes from "./modulePropTypes";
 
 export default class Head extends Component {
 
     static propTypes = {
-        columns: PropTypes.arrayOf(column)
+        columns: PropTypes.arrayOf(modulePropTypes.column)
     };
 
     renderCell ({key, formattedKey}) {

@@ -1,4 +1,7 @@
+[![npm version](https://badge.fury.io/js/bootstrap-table-react.svg)](https://badge.fury.io/js/bootstrap-table-react)
 [![Build Status](https://travis-ci.org/staticdeploy/bootstrap-table-react.svg?branch=master)](https://travis-ci.org/staticdeploy/bootstrap-table-react)
+[![Dependency Status](https://david-dm.org/staticdeploy/bootstrap-table-react.svg)](https://david-dm.org/staticdeploy/bootstrap-table-react)
+[![devDependency Status](https://david-dm.org/staticdeploy/bootstrap-table-react/dev-status.svg)](https://david-dm.org/staticdeploy/bootstrap-table-react#info=devDependencies)
 
 # bootstrap-table-react
 

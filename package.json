@@ -2,7 +2,7 @@
   "name": "bootstrap-table-react",
   "version": "1.2.0",
   "description": "Simple bootstrap table in react",
-  "main": "lib/Table.jsx",
+  "main": "lib/Table.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "dev": "npm test -- --watch",
